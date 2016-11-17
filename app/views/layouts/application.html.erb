@@ -8,7 +8,50 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="main">
+    <div class="container">
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Macrosoft</a>
+        </div>
+        <div  style="float:right;">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="#">Gadgets</a>
+              </li>
+              <li>
+                <a href="#">Clothing</a>
+              </li>
+              <li>
+                <a href="#">Contact</a>
+              </li>
+              <li>
+                <a href="/products/new">Add Product</a>
+              </li>
+            </ul>
+          </div>
+        </div> 
+      </nav>
+
+      <div style="margin-top:100px">
+        <% flash.each do |name, message| %>
+          <div class="alert alert-warning alert-dismissible fade in" role="alert" style="margin-top: 100px">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong><%= message %></strong>
+          </div>
+        <% end %>
+
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

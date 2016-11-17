@@ -1,0 +1,27 @@
+<div class="container">
+  <%= image_tag @product.image %> 
+  <h1>Product <%= @product.name.upcase %></h1>
+  <% if @product.discounted? %>
+    <h3 class="discount-item">Price <%= number_to_currency@product.price %></h3> 
+    <p>Discounted Item</p>
+  <else>
+    <h3 >Price <%= number_to_currency@product.price %></h3> 
+    <p>Discounted Item</p>
+  <% end %>
+
+  <h3>Tax <%= number_to_currency@product.tax %></h3> 
+  <h3>Total <%= number_to_currency@product.total %></h3> 
+  <h3><%= @product.sale_message %></h3>   
+  <h3><%= @product.description.capitalize %></h3>
+  <div>
+    <a href='/products/<%= @product.id %>/edit'>Edit this product</a>
+  </div>
+  <div>
+    <%= link_to "Destroy this Product", "/products/#{@product.id}", method: :delete %>
+  </div>
+  <div>
+    <a href='/products'>Back to main page</a>
+  </div>
+
+
+</div>

@@ -83,3 +83,5 @@ production:
   database: mini-capstone-pg_production
   username: mini-capstone-pg
   password: <%= ENV['MINI-CAPSTONE-PG_DATABASE_PASSWORD'] %>
+
+
