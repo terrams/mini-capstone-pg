@@ -1,17 +1,17 @@
 <div class="container">
   <%= image_tag @product.image %> 
   <h1>Product <%= @product.name.upcase %></h1>
-  <% if @product.discounted? %>
-    <h3 class="discount-item">Price <%= number_to_currency@product.price %></h3> 
-    <p>Discounted Item</p>
-  <else>
-    <h3 >Price <%= number_to_currency@product.price %></h3> 
-    <p>Discounted Item</p>
-  <% end %>
-
+  <h3>Price <%= number_to_currency@product.price %></h3> 
   <h3>Tax <%= number_to_currency@product.tax %></h3> 
   <h3>Total <%= number_to_currency@product.total %></h3> 
   <h3><%= @product.sale_message %></h3>   
+
+  <% if @product.in_stock? %>
+    <p>Quantity in stock <%= @product.stock_quantity %></p>
+  <% else %>
+    <p style="color:red">Out Of Stock!!</p>
+  <% end %>
+
   <h3><%= @product.description.capitalize %></h3>
   <div>
     <a href='/products/<%= @product.id %>/edit'>Edit this product</a>

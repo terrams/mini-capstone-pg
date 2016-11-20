@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
 
   def sale_message
-    if price.to_f < 2.0 
+    if price < 2.0 
       "Discounted Item!"
     else
       "Everyday value"
@@ -9,11 +9,11 @@ class Product < ApplicationRecord
   end
 
   def tax
-    (price.to_f * 0.09).round(2)
+    price * 0.09
   end
 
   def total 
-    (price.to_f + tax).round(2)
+    price + tax
   end
   
   def discount_class_name
@@ -23,7 +23,11 @@ class Product < ApplicationRecord
   end
 
   def discounted?
-    price.to_f < 2.0 
+    price < 2.0 
   end
+
+  def in_stock?
+    stock_quantity > 0
+  end  
 
 end

@@ -1,57 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>MiniCapstonePg</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>MiniCapstonePg</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body class="main">
-    <div class="container">
-      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Macrosoft</a>
-        </div>
-        <div  style="float:right;">
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li>
-                <a href="#">Gadgets</a>
-              </li>
-              <li>
-                <a href="#">Clothing</a>
-              </li>
-              <li>
-                <a href="#">Contact</a>
-              </li>
-              <li>
-                <a href="/products/new">Add Product</a>
-              </li>
-            </ul>
-          </div>
-        </div> 
-      </nav>
+<body class="main">
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
 
-      <div style="margin-top:100px">
-        <% flash.each do |name, message| %>
-          <div class="alert alert-warning alert-dismissible fade in" role="alert" style="margin-top: 100px">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <strong><%= message %></strong>
-          </div>
-        <% end %>
-
-        <%= yield %>
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Brand</a>
       </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">Link</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort Orders<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/products?sort=category">Sort by category</a></li>
+              <li><a href="/products?sort=name">Sort by name</a></li>            
+              <li><a href="/products?sort=price">Sort by price, low to high</a></li>
+              <li><a href="/products?sort=price&order=desc">Sort by price, high to low</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="navbar-left" style="margin-top:12px">
+          <%= form_tag "/search", method: :post do %>
+            <%= label_tag :search %>
+            <%= text_field_tag :search %>
+            <%= submit_tag "Search" %>
+          <% end %>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/products?discount=true">Discounted items</a></li>
+          <li><a href="/products/random">Random Items</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  <div class="container">
+
+    <div style="margin-top:100px">
+      <% flash.each do |name, message| %>
+      <div class="alert alert-warning alert-dismissible fade in" role="alert" style="margin-top: 100px">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong><%= message %></strong>
+      </div>
+      <% end %>
+
+      <%= yield %>
     </div>
-  </body>
+  </div>
+</body>
 </html>
