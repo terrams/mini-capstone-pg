@@ -22,7 +22,8 @@ class ProductsController < ApplicationController
       name: params["name"],
       price: params["price"],
       image: params["image"],
-      description: params["description"]
+      description: params["description"],
+      supplier_id: params["supplier_id"]
       )
     product.save
 #    render 'create.html.erb'
@@ -55,6 +56,7 @@ class ProductsController < ApplicationController
     product.price = params[:price]
     product.image = params[:image]
     product.description = params[:description]
+    product.supplier_id = params[:supplier_id]    
     product.save
     flash[:success] = "Product successfully updated !!"
     redirect_to "/products/#{product.id}"

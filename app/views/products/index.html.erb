@@ -15,7 +15,7 @@
     <% @array.each do |product| %>
 
       <div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="thumbnail"><%= image_tag product.image %> 
+        <div class="thumbnail"><%= image_tag product.images.first.image_file %> 
           <div class="caption">
             <h5 class="pull-right"><%= product.price %></h5>
             <h5><a href='/products/<%= product.id %>'><%= product.name.upcase %></a>

@@ -1,0 +1,22 @@
+
+
+<!-- Page Content -->
+<div class="container">
+
+  <h1>Suppliers</h1>
+ 
+  <div>
+    <% @array.each do |supplier| %>
+      <div style="margin: 10px 0px 10px 0px">
+        <h2 style="color:steelblue"><%= supplier.name %></h2>
+        <h4>Email:  <%= supplier.email %></h4>
+        <h4>Phone:  <%= supplier.phone %></h4>
+      </div>               
+    <% end %>
+  </div>
+
+  <h3 style="margin-top:40px"><a href="suppliers/new">Add a Supplier</a></h3>
+
+<div class="container">
+
+

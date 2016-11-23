@@ -1,9 +1,15 @@
 <div class="container">
-  <%= image_tag @product.image %> 
+
+  <% @product.images.each do |image| %>
+    <%= image_tag image.image_file %> 
+  <% end %>
+
   <h1>Product <%= @product.name.upcase %></h1>
   <h3>Price <%= number_to_currency@product.price %></h3> 
   <h3>Tax <%= number_to_currency@product.tax %></h3> 
   <h3>Total <%= number_to_currency@product.total %></h3> 
+  <h3>Supplier: <%= @product.supplier.name %>
+
   <h3><%= @product.sale_message %></h3>   
 
   <% if @product.in_stock? %>
@@ -22,6 +28,5 @@
   <div>
     <a href='/products'>Back to main page</a>
   </div>
-
 
 </div>

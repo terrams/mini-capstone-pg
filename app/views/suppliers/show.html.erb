@@ -1,0 +1,25 @@
+<div class="container">
+
+  <div>
+    <h1 style="color:steelblue">Supplier <%= @supplier.name.upcase %></h1>
+    <h3>Email <%= @supplier.email %></h3> 
+    <h3>Phone <%= @supplier.phone %></h3>
+  </div>
+  <div>
+    <% @supplier.products.each do |product| %>
+      <h5>Product <%= product.name.upcase %></h5>
+      <h5>Price <%= number_to_currency(product.price) %></h5> 
+    <% end %>
+  </div>
+
+  <div>
+    <a href='/suppliers/<%= @supplier.id %>/edit'>Edit this supplier</a>
+  </div>
+  <div>
+    <%= link_to "Destroy this Product", "/suppliers/#{@supplier.id}", method: :delete %>
+  </div>
+  <div>
+    <a href='/suppliers'>Back to main page</a>
+  </div>
+
+</div>
