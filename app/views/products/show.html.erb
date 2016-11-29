@@ -1,24 +1,40 @@
 <div class="container">
 
+  <h2>Product <%= @product.name.upcase %></h2>
   <% @product.images.each do |image| %>
     <%= image_tag image.image_file %> 
   <% end %>
 
-  <h1>Product <%= @product.name.upcase %></h1>
-  <h3>Price <%= number_to_currency@product.price %></h3> 
-  <h3>Tax <%= number_to_currency@product.tax %></h3> 
-  <h3>Total <%= number_to_currency@product.total %></h3> 
-  <h3>Supplier: <%= @product.supplier.name %>
-
-  <h3><%= @product.sale_message %></h3>   
-
   <% if @product.in_stock? %>
-    <p>Quantity in stock <%= @product.stock_quantity %></p>
+    <p style="margin-top:20px">Quantity in stock <%= @product.stock_quantity %></p>
   <% else %>
-    <p style="color:red">Out Of Stock!!</p>
+    <p style="color:red,margin-top:20px"">Out Of Stock!!</p>
   <% end %>
 
-  <h3><%= @product.description.capitalize %></h3>
+
+  <h4>Price <%= number_to_currency@product.price %></h4> 
+  <h4>Tax <%= number_to_currency@product.tax %></h4> 
+  <h4>Total <%= number_to_currency@product.total %></h4> 
+  <h4>Supplier: <%= @product.supplier.name %>
+  <h4><%= @product.sale_message %></h4>   
+  <h4><%= @product.description.capitalize %></h4>
+
+  <p>Order Product:</p>
+  <%= form_tag '/orders', method: :post do %>
+    <div class="form-group">
+      <%= label_tag :quantity %>
+      <%= text_field_tag :quantity,"", class: 'form-control' %>
+    <div>
+   <div class="form-group">
+      <%= label_tag :product_id %>
+      <%= text_field_tag :product_id, @product.id, class: 'form-control' %>
+    <div>
+
+    <div style="margin-top:20px">
+      <p><%= submit_tag "Buy Now", class: "btn btn-primary" %> </p>
+    </div> 
+  <% end %>
+
   <div>
     <a href='/products/<%= @product.id %>/edit'>Edit this product</a>
   </div>

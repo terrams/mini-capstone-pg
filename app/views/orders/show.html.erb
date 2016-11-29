@@ -1,0 +1,24 @@
+<div class="container">
+
+  <div>
+    <h3 style="color:steelblue">Order</h3> 
+  </div>
+  <div>
+    <h4><%= current_user.name %></h4>
+    <h4><%= current_user.email %></h4>
+    <h4>Order ID:  <%= @order.id %></h4>
+    <%= image_tag @product.images.first.image_file %> 
+    <h4>Product Name: <%= @product.name %></h4>
+    <h4>Product ID: <%= @order.product_id %></h4>
+    <h4>Quantity: <%= @order.quantity %></h4>
+    <h4>Subtotal: <%= @order.subtotal %></h4>
+    <h4>Tax: <%= @order.tax %></h4>
+    <h4>Total: <%= @order.total %></h4>
+
+  </div>
+
+  <div>
+    <a href='/products'>Back to main page</a>
+  </div>
+
+</div>

@@ -1,6 +1,8 @@
 class Product < ApplicationRecord
+  belongs_to :user
   belongs_to :supplier
   has_many :images
+  has_many :orders
 
   def sale_message
     if price < 2.0 
