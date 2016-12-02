@@ -33,6 +33,9 @@
               <li><a href="/products?sort=name">Sort by name</a></li>            
               <li><a href="/products?sort=price">Sort by price, low to high</a></li>
               <li><a href="/products?sort=price&order=desc">Sort by price, high to low</a></li>
+              <% Category.all.each do |category| %>
+                <li><a href="/products?category_name=<%= category.name.downcase %>"><%= category.name %></a></li>  
+              <% end %>            
             </ul>
           </li>
         </ul>
@@ -46,6 +49,8 @@
         <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
             <li><a href="#">Welcome <%= current_user.name %></a></li>
+            <li><a href="/cart">Check Out</a></li>  
+
             <li><a href="/logout">Logout</a></li>  
           <% else %>
             <li><a href="/signup">Sign Up</a></li>        

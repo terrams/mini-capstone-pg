@@ -1,0 +1,26 @@
+
+<h3>Shopping Cart</h3>
+    <% @items.each do |item| %>
+      <div class="col-sm-3 col-lg-3 col-md-3" style="margin-top:20px">
+        Product Name: <%= item.product.name %>
+      </div>
+      <div class="col-sm-3 col-lg-3 col-md-3" style="margin-top:20px">      
+        Product ID: <%= item.product.id%>
+      </div>
+      <div class="col-sm-3 col-lg-3 col-md-3" style="margin-top:20px">
+        Quantity: <%= item.quantity %>
+      </div>
+      <div class="col-sm-3 col-lg-3 col-md-3" style="margin-top:20px">
+        Status: <%= item.status %>
+        <span style="margin-left:10px"><%= link_to "Remove Item", "/cart/#{item.id}", method: :delete %></span>
+      </div>
+    <% end %>
+
+  <%= form_tag '/orders', method: :post do %>
+    <div style="margin-top:30px">
+      <p><%= submit_tag "Buy Now", class: "btn btn-primary" %> </p>
+    </div> 
+  <% end %>
+
+ 
+

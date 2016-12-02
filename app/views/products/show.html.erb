@@ -11,16 +11,21 @@
     <p style="color:red,margin-top:20px"">Out Of Stock!!</p>
   <% end %>
 
-
   <h4>Price <%= number_to_currency@product.price %></h4> 
   <h4>Tax <%= number_to_currency@product.tax %></h4> 
   <h4>Total <%= number_to_currency@product.total %></h4> 
   <h4>Supplier: <%= @product.supplier.name %>
+  <h4>Categories:
+    <% @product.categories.each do |category| %>
+      <%= category.name %>
+    <% end %>
+  </h4>
+  </h4>
   <h4><%= @product.sale_message %></h4>   
   <h4><%= @product.description.capitalize %></h4>
 
   <p>Order Product:</p>
-  <%= form_tag '/orders', method: :post do %>
+  <%= form_tag '/cart', method: :post do %>
     <div class="form-group">
       <%= label_tag :quantity %>
       <%= text_field_tag :quantity,"", class: 'form-control' %>
@@ -29,9 +34,8 @@
       <%= label_tag :product_id %>
       <%= text_field_tag :product_id, @product.id, class: 'form-control' %>
     <div>
-
     <div style="margin-top:20px">
-      <p><%= submit_tag "Buy Now", class: "btn btn-primary" %> </p>
+      <p><%= submit_tag "Add to Cart", class: "btn btn-primary" %> </p>
     </div> 
   <% end %>
 

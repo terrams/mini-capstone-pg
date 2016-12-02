@@ -4,6 +4,9 @@ class ProductsController < ApplicationController
     discounted = params[:discount] == "true"
     if discounted
       @array = Product.where("price < ?", 100)
+    elsif params[:category_name] != nil
+      category = Category.find_by(name: params[:category_name])
+      @array = category.products
     else
       sort_attribute = params[:sort] || "name"
       sort_order = params[:order] || "asc"
@@ -18,10 +21,8 @@ class ProductsController < ApplicationController
 
   def create
     product = Product.new(
-      category: params["category"],
       name: params["name"],
       price: params["price"],
-      image: params["image"],
       description: params["description"],
       supplier_id: params["supplier_id"]
       )
@@ -51,10 +52,8 @@ class ProductsController < ApplicationController
   def update
     product_id = params[:id]
     product =Product.find_by(id: product_id)      
-    product.category = params[:category]
     product.name = params[:name]
     product.price = params[:price]
-    product.image = params[:image]
     product.description = params[:description]
     product.supplier_id = params[:supplier_id]    
     product.save
